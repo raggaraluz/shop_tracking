@@ -61,8 +61,10 @@ The following endpoints are available (with examples)
 * PUT - http://<ip>:8080/api/device/{id} - Management endpoint to delete the device {id}. The new device configuration is passed in
   the request body.
   ```
-  DEVICEID=800003; SIMID=10199999; curl -s -X PUT -H 'Content-Type: application/json' -d '{"id": '$DEVICEID', "temperature": 20, "status": "READY", "sim": {"id": '$SIMID' } }' http://localhost:8080/api/device/$DEVICEID
+  DEVICEID=3; SIMID=10199999; curl -s -X PUT -H 'Content-Type: application/json' -d '{"id": '$DEVICEID', "temperature": 20, "status": "READY", "sim": {"id": '$SIMID' } }' http://localhost:8080/api/device/$DEVICEID
   ```
+  Please note that the sim id has a uniqueness constraint in the device table. This means that if the selected SIM is already assigned to
+  a different device, and error will the thrown.
 
 * GET - http://<ip>:8080/api/device/available-for-sale - Gets an ordered result of devices available for sale. They are ordered by SIM ID
   ```
